@@ -1,5 +1,5 @@
 const { BlazeClient, searchNetworkAsset, readNetworkAsset } = require('mixin-node-sdk')
-const config = require('../config.json')
+const config = require('D:/python/mixin-sdk-test/config.json')
 const QRCode = require('qrcode')
 const { validate: isUUID } = require('uuid')
 
@@ -118,7 +118,9 @@ async function handleAsset({ user_id, data }) {
   return true
 }
 
-const cnb_asset_id = '965e5c6e-434c-3fa9-b780-c50f43cd955c'
+const usdc_asset_id = 
+'9b180ab6-6abe-3dc0-a13f-04169eb34bfa'
+//const cnb_asset_id = //'965e5c6e-434c-3fa9-b780-c50f43cd955c'
 // - 用户给机器人发送 `/claim`
 // - 机器人收到消息后，进行查询该用户是否领取。
 // - 如果已领取，则发送 `您今日已领取，请明日再来。`
@@ -133,8 +135,8 @@ async function handleClaim({ user_id }) {
   if (!transfer || !transfer.trace_id) {
     await client.transfer({
       trace_id,
-      asset_id: cnb_asset_id,
-      amount: '1',
+      asset_id: usdc_asset_id,//cnb_asset_id,
+      amount: '0.01',
       opponent_id: user_id
     })
   } else {
@@ -175,8 +177,8 @@ async function sendHelpMsgWithInfo(user_id, info) { // 发送帮助消息
   await Promise.all([
     client.sendTextMsg(user_id, info + helpMsg),
     client.sendAppButtonMsg(user_id, [
-      { label: "签到", action: "input:/claim", color: "#000" },
-      { label: "打赏", action: "input:/donate", color: "#000" }
+      { label: "签到", action: "input:/claim", color: "#000000" },
+      { label: "打赏", action: "input:/donate", color: "#000000" }
     ])
   ])
   return true
