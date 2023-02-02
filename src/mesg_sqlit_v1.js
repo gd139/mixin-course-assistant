@@ -34,9 +34,9 @@ data = `${msg.data}:${result}`
 console.log('引用合并效果:',data)}
 
 let result1 = await queryText(data)
-//console.log ('GPT:',result1)
-client.sendMessageText(msg.user_id,result1).then(async (messageInfo) =>{
- Object.assign(messageInfo, {data:`${result1}`})
+console.log ('GPT:',result1)
+client.sendMessageText(msg.user_id,result).then(async (messageInfo) =>{
+ Object.assign(messageInfo, {data:`${result}`})
  await MessageUpdate(messageInfo)
 })
 }
@@ -200,3 +200,4 @@ app.get('/messages/:id', function(req, res) {
 //    res.sendStatus(200);
 //  });
 //});
+//module.exports = Message;
