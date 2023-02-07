@@ -29,7 +29,7 @@ client.loopBlaze({
     //readAssetPr(msg)
     handleMsg(msg)  
    } else {
-     await client.sendTextMsg(user_id, "你暂不在名单里，请再核查") 
+     await client.sendTextMsg(msg.user_id, "你暂不在名单里，请再核查") 
   }
 },
   onAckReceipt(){
